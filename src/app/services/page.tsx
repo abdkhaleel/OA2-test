@@ -515,14 +515,14 @@ export default function ServicesPage() {
         </motion.div>
         
         {/* Footer */}
-        <motion.div 
+        {/* <motion.div 
           className="mt-20 text-center text-gray-500 text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: isInView ? 1 : 0 }}
           transition={{ duration: 0.5, delay: 1.2 }}
         >
           <p>© {new Date().getFullYear()} OA2 Technologies. All rights reserved.</p>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   );

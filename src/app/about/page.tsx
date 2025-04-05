@@ -257,7 +257,7 @@ export default function AboutPage() {
         </div>
         
         {/* Footer */}
-        <motion.div 
+        {/* <motion.div 
           className="bg-gray-50 px-8 py-6 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -266,7 +266,7 @@ export default function AboutPage() {
           <p className="text-gray-600">
             © {new Date().getFullYear()} OA2. All rights reserved.
           </p>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
     </div>
   );
