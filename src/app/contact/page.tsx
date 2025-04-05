@@ -61,7 +61,7 @@ export default function ContactPage() {
       icon: "📧",
       title: "Email Us",
       description: "Send us an email and we'll get back to you within 24 hours.",
-      action: "oa2system@gmail.com",
+      action: "oa2systems@gmail.com",
       actionType: "email"
     },
     {
@@ -82,7 +82,7 @@ export default function ContactPage() {
 
   const socialLinks = [
     { name: "LinkedIn", icon: "linkedin", url: "#linkedin" },
-    { name: "Twitter", icon: "twitter", url: "#twitter" },
+    { name: "Twitter", icon: "twitter", url: "https://x.com/oa2_team" },
     { name: "Facebook", icon: "facebook", url: "#facebook" },
     { name: "Instagram", icon: "instagram", url: "#instagram" }
   ];
@@ -341,8 +341,8 @@ export default function ContactPage() {
                                 </svg>
                               )}
                               {social.icon === 'twitter' && (
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                                <svg className="w-5 h-5" viewBox="0 0 1200 1227" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M714.658 582.854L1182.46 0H1075.84L663.232 511.812L324.215 0H0.132812L497.557 714.257L0.132812 1227H106.745L545.603 683.579L901.873 1227H1226.95L714.395 582.854H714.658Z" />
                                 </svg>
                               )}
                               {social.icon === 'facebook' && (
@@ -468,7 +468,7 @@ export default function ContactPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:oa2system@gmail.com"
+              href="mailto:oa2systems@gmail.com"
               className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-all hover:shadow-xl"
             >
               Email Us Now
