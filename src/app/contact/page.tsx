@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function ContactPage() {
+  const contactFormRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,12 +32,12 @@ export default function ContactPage() {
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      
+
       // Reset form after showing success message
       setTimeout(() => {
         setSubmitted(false);
@@ -87,8 +88,8 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-16 px-4 sm:px-6 lg:px-8"><br/>
-      <motion.div 
+    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-16 px-4 sm:px-6 lg:px-8"><br />
+      <motion.div
         className="max-w-5xl mx-auto"
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
@@ -98,16 +99,16 @@ export default function ContactPage() {
         {/* Hero Section */}
         <div className="relative overflow-hidden bg-blue-600 rounded-2xl shadow-xl mb-12">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 opacity-90"></div>
-          
+
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
             <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-yellow-300"></div>
             <div className="absolute top-20 right-10 w-20 h-20 rounded-full bg-indigo-300"></div>
             <div className="absolute bottom-10 left-1/3 w-30 h-30 rounded-full bg-blue-300"></div>
           </div>
-          
+
           <div className="relative py-16 px-8 text-center z-10">
-            <motion.h1 
+            <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -115,13 +116,13 @@ export default function ContactPage() {
             >
               Get in Touch with <span className="text-yellow-300">OA2</span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl text-blue-100 max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              We'd love to hear from you! Whether you have a project in mind, need assistance, 
+              We'd love to hear from you! Whether you have a project in mind, need assistance,
               or just want to say hello, feel free to reach out.
             </motion.p>
           </div>
@@ -130,24 +131,22 @@ export default function ContactPage() {
         {/* Main Content */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {/* Contact Methods Tabs */}
-          <div className="flex border-b border-gray-200">
+          <div className="flex border-b border-gray-200" ref={contactFormRef}>
             <button
               onClick={() => setActiveMethod('form')}
-              className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
-                activeMethod === 'form' 
-                  ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50' 
-                  : 'text-gray-500 hover:text-blue-500 hover:bg-gray-50'
-              }`}
+              className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${activeMethod === 'form'
+                ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                : 'text-gray-500 hover:text-blue-500 hover:bg-gray-50'
+                }`}
             >
               Contact Form
             </button>
             <button
               onClick={() => setActiveMethod('methods')}
-              className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
-                activeMethod === 'methods' 
-                  ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50' 
-                  : 'text-gray-500 hover:text-blue-500 hover:bg-gray-50'
-              }`}
+              className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${activeMethod === 'methods'
+                ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                : 'text-gray-500 hover:text-blue-500 hover:bg-gray-50'
+                }`}
             >
               Other Ways to Connect
             </button>
@@ -159,11 +158,13 @@ export default function ContactPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
+                id='contact-form'
+
               >
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
-                
+
                 {submitted ? (
-                  <motion.div 
+                  <motion.div
                     className="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -187,7 +188,7 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder-gray-300"
                           placeholder="John Doe"
                         />
                       </div>
@@ -202,12 +203,12 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder-gray-300"
                           placeholder="your.email@example.com"
                         />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
                         Subject
@@ -219,11 +220,11 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder-gray-300"
                         placeholder="How can we help you?"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                         Your Message
@@ -235,11 +236,11 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none placeholder-gray-300"
                         placeholder="Please provide details about your inquiry..."
                       ></textarea>
                     </div>
-                    
+
                     <div className="flex items-center">
                       <input
                         id="privacy"
@@ -251,16 +252,15 @@ export default function ContactPage() {
                         I agree to the <Link href="/privacy-policy" className="text-blue-600 hover:underline">privacy policy</Link>
                       </label>
                     </div>
-                    
+
                     <div>
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-full md:w-auto px-8 py-3 text-white font-medium rounded-lg shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-                          isSubmitting 
-                            ? 'bg-blue-400 cursor-not-allowed' 
-                            : 'bg-blue-600 hover:bg-blue-700 hover:shadow-lg'
-                        }`}
+                        className={`w-full md:w-auto px-8 py-3 text-white font-medium rounded-lg shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting
+                          ? 'bg-blue-400 cursor-not-allowed'
+                          : 'bg-blue-600 hover:bg-blue-700 hover:shadow-lg'
+                          }`}
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center">
@@ -287,7 +287,7 @@ export default function ContactPage() {
                 transition={{ duration: 0.5 }}
               >
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Other Ways to Connect</h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                   {contactMethods.map((method, index) => (
                     <motion.div
@@ -301,9 +301,9 @@ export default function ContactPage() {
                       <div className="text-4xl mb-4">{method.icon}</div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-2">{method.title}</h3>
                       <p className="text-gray-600 mb-4">{method.description}</p>
-                      
+
                       {method.actionType === 'email' && (
-                        <a 
+                        <a
                           href={`mailto:${method.action}`}
                           className="inline-flex items-center text-blue-600 hover:text-blue-800"
                         >
@@ -313,23 +313,23 @@ export default function ContactPage() {
                           </svg>
                         </a>
                       )}
-                      
+
                       {method.actionType === 'chat' && (
-                        <button 
+                        <button
                           className="inline-flex items-center text-blue-600 hover:text-blue-800"
                           onClick={() => alert('Live chat feature coming soon!')}
                         >
                           Start Chat
                           <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                           </svg>
                         </button>
                       )}
-                      
+
                       {method.actionType === 'social' && (
                         <div className="flex space-x-3">
                           {socialLinks.slice(0, 3).map((social) => (
-                            <a 
+                            <a
                               key={social.name}
                               href={social.url}
                               className="text-gray-500 hover:text-blue-600 transition-colors"
@@ -337,27 +337,27 @@ export default function ContactPage() {
                             >
                               {social.icon === 'linkedin' && (
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                 </svg>
                               )}
                               {social.icon === 'twitter' && (
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                                 </svg>
                               )}
                               {social.icon === 'facebook' && (
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
                                 </svg>
                               )}
                               {social.icon === 'instagram' && (
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                 </svg>
                               )}
                             </a>
                           ))}
-                          <button 
+                          <button
                             className="text-gray-500 hover:text-blue-600 transition-colors"
                             onClick={() => alert('More social links coming soon!')}
                           >
@@ -370,7 +370,7 @@ export default function ContactPage() {
                     </motion.div>
                   ))}
                 </div>
-                
+
                 <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
                   <h3 className="text-xl font-semibold text-blue-800 mb-4">Business Hours</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -388,7 +388,7 @@ export default function ContactPage() {
                     * Response times may vary during holidays and weekends.
                   </p>
                 </div>
-                
+
                 <div className="mt-10">
                   <h3 className="text-xl font-semibold text-gray-800 mb-4">Frequently Asked Questions</h3>
                   <div className="space-y-4">
@@ -406,7 +406,7 @@ export default function ContactPage() {
                         answer: "Yes, we provide maintenance and support services for both projects we've developed and existing systems that need improvements or fixes."
                       }
                     ].map((faq, index) => (
-                      <motion.div 
+                      <motion.div
                         key={index}
                         className="bg-white border border-gray-200 rounded-lg p-5"
                         initial={{ opacity: 0 }}
@@ -423,9 +423,9 @@ export default function ContactPage() {
             )}
           </div>
         </div>
-        
+
         {/* Map or Location Section */}
-        <motion.div 
+        <motion.div
           className="mt-12 bg-white rounded-2xl shadow-lg overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -434,16 +434,16 @@ export default function ContactPage() {
           <div className="p-6 md:p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Location</h2>
             <p className="text-gray-600 mb-6">
-              OA2 Technologies is based in Chennai, India. While we primarily work remotely, 
+              OA2 Technologies is based in Chennai, India. While we primarily work remotely,
               we're always open to in-person meetings by appointment.
             </p>
-            
+
             <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden bg-gray-100">
               {/* Replace with actual map or image */}
               <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
                 <p className="text-gray-500 text-center px-4">
                   Interactive map will be displayed here.<br />
-                  <button 
+                  <button
                     className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
                     onClick={() => window.open('https://maps.google.com', '_blank')}
                   >
@@ -454,9 +454,9 @@ export default function ContactPage() {
             </div>
           </div>
         </motion.div>
-        
+
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="mt-12 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -467,23 +467,27 @@ export default function ContactPage() {
             Let's turn your ideas into reality. Contact us today to discuss your project requirements and get a free consultation.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a 
+            <a
               href="mailto:oa2system@gmail.com"
               className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-all hover:shadow-xl"
             >
               Email Us Now
             </a>
-            <button 
-              onClick={() => setActiveMethod('form')}
+            <button
+              onClick={() => {
+                setActiveMethod('form'); setTimeout(() => {
+                  contactFormRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }, 0);
+              }}
               className="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-lg border border-blue-200 hover:bg-blue-50 transition-all"
             >
               Use Contact Form
             </button>
           </div>
         </motion.div>
-        
+
         {/* Footer */}
-        <motion.div 
+        <motion.div
           className="mt-16 text-center text-gray-500 text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
