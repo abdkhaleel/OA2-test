@@ -191,7 +191,7 @@ export default function HomePage() {
       </section>
       
       {/* Testimonials Section */}
-      <section ref={testimonialsRef} className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section ref={testimonialsRef} className="py-16 px-4 sm:px-6 lg:px-8 bg-white" style={{display: 'none'}}>
         <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-12"

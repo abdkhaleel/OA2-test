@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from "next/link";
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
 
@@ -27,7 +27,8 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/services', label: 'Services' },
-    { href: '/contact', label: 'Contact' }
+    { href: '/contact', label: 'Contact' },
+    { href: '/our-works', label: 'Our Works' },
   ];
 
   return (

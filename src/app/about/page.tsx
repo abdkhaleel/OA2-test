@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
+
 
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState('mission');
@@ -32,14 +34,14 @@ export default function AboutPage() {
       name: "Abdul Khaleel",
       role: "Co-Founder & AI Engineer",
       bio: "Passionate about AI and machine learning with expertise in developing intelligent solutions.",
-      image: "/images/khaleel.jpg", // Add founder images to your public folder
+      image: "/images/khaleel.png", // Add founder images to your public folder
       linkedin: "https://www.linkedin.com/in/abdul-khaleel/"
     },
     {
       name: "Aathi Eswar",
       role: "Co-Founder & Software Engineer",
       bio: "Full-stack developer with a knack for creating scalable and efficient software solutions.",
-      image: "/images/aathi.jpg", // Add founder images to your public folder
+      image: "/images/aathi.png", // Add founder images to your public folder
       linkedin: "https://www.linkedin.com/in/aathi-eswar-5ab416229/"
     }
   ];
@@ -218,13 +220,13 @@ export default function AboutPage() {
                           <div className="flex items-center">
                             <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mr-4">
                               {/* Uncomment when you have actual images */}
-                              {/* <Image 
+                              <Image 
                                 src={founder.image} 
                                 alt={founder.name} 
                                 width={80} 
                                 height={80} 
                                 className="object-cover"
-                              /> */}
+                              />
                               <div className="w-full h-full flex items-center justify-center text-2xl font-bold text-blue-600">
                                 {founder.name.charAt(0)}
                               </div>
