@@ -43,12 +43,13 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
   
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error('Failed to send email');
+        throw new Error(data.error || 'Failed to send email');
       }
   
       setSubmitted(true);
-      // Reset form after showing success message
       setTimeout(() => {
         setSubmitted(false);
         setFormData({
@@ -58,13 +59,16 @@ export default function ContactPage() {
           message: ''
         });
       }, 5000);
+      
+      console.log('Email sent successfully:', data);
     } catch (error) {
-      console.error('Error sending email:', error);
-      alert('Failed to send email. Please try again later.');
+      console.error('Detailed error:', error);
+      alert('Email sending failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
+  
   
 
   const fadeIn = {
