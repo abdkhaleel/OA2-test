@@ -80,18 +80,25 @@ export default function OurWorksPage() {
                 >
                   {/* Project Image */}
                   <div className="relative w-full h-48">
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      layout="fill"
-                      objectFit="cover" // Adjust as needed: cover, contain
-                      className="transition-transform duration-300 group-hover:scale-105" // Optional zoom effect
-                    />
+                    {project.imageUrl !== '#' ? (
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        layout="fill"
+                        objectFit="cover"
+                        className="transition-transform duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <span className="text-gray-500 text-sm font-medium">No Preview Available</span>
+                      </div>
+                    )}
                     {/* Optional: Overlay or Category Badge */}
                     <span className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded">
                       {project.category}
                     </span>
                   </div>
+
 
                   {/* Project Content */}
                   <div className="p-6 flex flex-col flex-grow">
