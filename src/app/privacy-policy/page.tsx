@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">3. Information Sharing</h2>
               <p className="text-gray-600">
-                We do not sell, trade, or otherwise transfer your personal information to outside parties. 
+                We do not sell or trade your personal information to outside parties. 
                 Your information is only used to respond to your inquiries and improve our services.
               </p>
             </section>
