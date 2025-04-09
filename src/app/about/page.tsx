@@ -208,7 +208,7 @@ export default function AboutPage() {
                   <h2 className="text-3xl font-bold text-gray-900">Meet Our Founders</h2>
                   <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                     {founderProfiles.map((founder, index) => (
-                      <motion.div 
+                      <motion.div
                         key={founder.name}
                         className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                         initial={{ opacity: 0, y: 20 }}
@@ -218,18 +218,15 @@ export default function AboutPage() {
                       >
                         <div className="p-6">
                           <div className="flex items-center">
-                            <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mr-4">
-                              {/* Uncomment when you have actual images */}
-                              <Image 
-                                src={founder.image} 
-                                alt={founder.name} 
-                                width={80} 
-                                height={80} 
+                            <div className="relative w-24 h-24 rounded-full overflow-hidden mr-4 flex-shrink-0">
+                              <Image
+                                src={founder.image}
+                                alt={founder.name}
+                                fill
+                                sizes="(max-width: 768px) 96px, 96px"
                                 className="object-cover"
+                                priority
                               />
-                              <div className="w-full h-full flex items-center justify-center text-2xl font-bold text-blue-600">
-                                {founder.name.charAt(0)}
-                              </div>
                             </div>
                             <div>
                               <h3 className="text-xl font-bold text-gray-900">{founder.name}</h3>
@@ -251,6 +248,7 @@ export default function AboutPage() {
                   </div>
                 </motion.div>
               )}
+
 
               {/* 
               } */}
